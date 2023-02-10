@@ -1,3 +1,4 @@
+%如果行或列全为0，则会报错。第一步，如果行或列全部为0，则随机赋予5个1。
 for t=1998:2012
     %读入RCA矩阵，E2:ANZ293是本研究中RCA矩阵的位置
     yuanshi=xlsread(['rca_' num2str(t)],'Sheet1','F2:PE337');
@@ -84,7 +85,7 @@ end
 
 
 
-
+%计算density
 clear all 
 clc
 for t=2000:2013
