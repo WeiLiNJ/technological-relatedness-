@@ -81,3 +81,34 @@ for t=1998:2012
     xlswrite(['rca_bz' num2str(t) '.xlsx'],yuanshi,'Sheet1','F2');
 end
 
+
+
+
+
+clear all 
+clc
+for t=2000:2013
+    yuanshi=xlsread(['rca_bz' num2str(t) '.xlsx'],'Sheet1','F2:AKK290');
+    [row,col]=size(yuanshi);
+    zhuanzhi=yuanshi';
+    gongtong=zhuanzhi*yuanshi;
+    matrix1_n=ones(1,row);
+    fenzi1_m=matrix1_n*yuanshi;
+    matrixn_1=ones(col,1);
+    fenmu=matrixn_1*fenzi1_m;
+    fenmu1=fenmu';
+    x_y=gongtong./fenmu;
+    x_z=gongtong./fenmu1;
+    relatedness_1=min(x_y,x_z);
+    density_fz=yuanshi*relatedness_1;
+    matrix_2=ones(1,col);
+    matrix_3=matrix_2*relatedness_1;
+    matrix_4=ones(row,1);
+    density_fm=matrix_4*matrix_3;
+    density=density_fz./density_fm;
+    %保存density
+    xlswrite(['density' num2str(t) '.xlsx'],density,'Sheet1','F2');
+end
+
+
+
