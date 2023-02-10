@@ -1,1 +1,83 @@
-test
+for t=1998:2012
+    %读入RCA矩阵，E2:ANZ293是本研究中RCA矩阵的位置
+    yuanshi=xlsread(['rca_' num2str(t)],'Sheet1','F2:PE337');
+    %关系到界定在位产业
+    yuanshi(yuanshi<1)=0;
+    yuanshi(yuanshi>=1)=1;
+    [row,col]=size(yuanshi);
+    %生成标准RCA矩阵
+    for i=1:col
+        if length(find(yuanshi(:,i)==1))==0
+            a=round(1+(row-1)*rand(1));
+            b=round(1+(row-1)*rand(1));
+            c=round(1+(row-1)*rand(1));
+            cc=round(1+(row-1)*rand(1));
+            yuanshi(a,i)=1;
+            yuanshi(b,i)=1;
+            yuanshi(c,i)=1;
+            yuanshi(cc,i)=1;
+        elseif length(find(yuanshi(:,i)==1))==1
+            a=round(1+(row-1)*rand(1));
+            b=round(1+(row-1)*rand(1));
+            c=round(1+(row-1)*rand(1));
+            cc=round(1+(row-1)*rand(1));
+            yuanshi(a,i)=1;
+            yuanshi(b,i)=1;
+            yuanshi(c,i)=1;
+            yuanshi(cc,i)=1;
+        elseif length(find(yuanshi(:,i)==1))==2
+            d=round(1+(row-1)*rand(1));
+            e=round(1+(row-1)*rand(1));
+            ee=round(1+(row-1)*rand(1));
+            yuanshi(d,i)=1;
+            yuanshi(e,i)=1;
+            yuanshi(ee,i)=1;
+        elseif length(find(yuanshi(:,i)==1))==3
+            f=round(1+(row-1)*rand(1));
+            ff=round(1+(row-1)*rand(1));
+            yuanshi(f,i)=1;
+            yuanshi(ff,i)=1;
+        elseif length(find(yuanshi(:,i)==1))==4
+            g=round(1+(row-1)*rand(1));
+            yuanshi(g,i)=1;
+        end
+    end
+    for j=1:row
+        if length(find(yuanshi(j,:)==1))==0
+            a=round(1+(col-1)*rand(1));
+            b=round(1+(col-1)*rand(1));
+            c=round(1+(col-1)*rand(1));
+            cc=round(1+(col-1)*rand(1));
+            yuanshi(j,a)=1;
+            yuanshi(j,b)=1;
+            yuanshi(j,c)=1;
+            yuanshi(j,cc)=1;
+        elseif length(find(yuanshi(j,:)==1))==1
+            a=round(1+(col-1)*rand(1));
+            b=round(1+(col-1)*rand(1));
+            c=round(1+(col-1)*rand(1));
+            cc=round(1+(col-1)*rand(1));
+            yuanshi(j,a)=1;
+            yuanshi(j,b)=1;
+            yuanshi(j,c)=1;
+            yuanshi(j,cc)=1;
+        elseif length(find(yuanshi(j,:)==1))==2
+            d=round(1+(col-1)*rand(1));
+            e=round(1+(col-1)*rand(1));
+            ee=round(1+(col-1)*rand(1));
+            yuanshi(j,d)=1;
+            yuanshi(j,e)=1;
+            yuanshi(j,ee)=1;
+        elseif length(find(yuanshi(j,:)==1))==3
+            f=round(1+(col-1)*rand(1));
+            ff=round(1+(col-1)*rand(1));
+            yuanshi(j,f)=1;
+            yuanshi(j,ff)=1;
+        elseif length(find(yuanshi(j,:)==1))==4
+            g=round(1+(col-1)*rand(1));
+            yuanshi(j,g)=1;
+        end
+    end
+    xlswrite(['rca_bz' num2str(t) '.xlsx'],yuanshi,'Sheet1','F2');
+end
+
